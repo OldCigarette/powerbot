@@ -6,6 +6,7 @@ package superchaoran.HerbsUlitimate.jobs;
 
 import org.powerbot.script.Condition;
 import org.powerbot.script.rt6.ClientContext;
+import org.powerbot.script.rt6.GameObject;
 import org.powerbot.script.rt6.Hud;
 import org.powerbot.script.rt6.Item;
 import superchaoran.HerbsUlitimate.HerbsUltimateMain;
@@ -50,6 +51,13 @@ public class MakeUnfPotion extends Job<HerbsUltimateMain, ClientContext> {
         status = "Open Backpack";
         if(!ctx.hud.opened(Hud.Window.BACKPACK)){
             ctx.hud.open(Hud.Window.BACKPACK);
+        }
+
+        //Take anagogic ort
+        GameObject rock0 = ctx.objects.select(ctx.players.local().tile(), 0).name("Anagogic ort").poll();
+        if(rock0.valid()) {
+            rock0.click();
+            Condition.sleep(300);
         }
 
         //cleaning herb
