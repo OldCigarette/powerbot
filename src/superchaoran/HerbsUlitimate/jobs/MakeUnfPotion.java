@@ -54,9 +54,9 @@ public class MakeUnfPotion extends Job<HerbsUltimateMain, ClientContext> {
         }
 
         //Take anagogic ort
-        GameObject rock0 = ctx.objects.select(ctx.players.local().tile(), 0).name("Anagogic ort").poll();
-        if(rock0.valid()) {
-            rock0.click();
+        GameObject ort = ctx.objects.select(ctx.players.local().tile(), 2).id(24909).poll();
+        if(ort.valid()) {
+            ort.click();
             Condition.sleep(300);
         }
 
