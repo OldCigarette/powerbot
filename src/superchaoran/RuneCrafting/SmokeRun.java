@@ -10,10 +10,10 @@ import java.util.concurrent.Callable;
  * Created by chaoran on 5/24/16.
  */
 @Script.Manifest(
-        name = "Running Mist Rune", properties = "author=superchaoran; topic=-5; client=6;",
-        description = "Running Mist Rune, 1m -2m/hour"
+        name = "Smoke Rune Runner", properties = "author=superchaoran; topic=1313029; client=6;",
+        description = "Smoke Rune Runner, 1m -3m/hour"
 )
-public class MistRun extends PollingScript<ClientContext> {
+public class SmokeRun extends PollingScript<ClientContext> {
     final int ringOfDueling3 = 2562;
     final int ringOfDueling8 = 2552;
     private int ringOfDuelingID;
@@ -25,7 +25,7 @@ public class MistRun extends PollingScript<ClientContext> {
         }
     };
 
-    private Locatable mistingLocation = new Locatable() {
+    private Locatable smokingLocation = new Locatable() {
         @Override
         public Tile tile() {
             return new Tile(2582,4842);
@@ -164,8 +164,8 @@ public class MistRun extends PollingScript<ClientContext> {
                 log.info("GotoBank");
                 break;
 
-            case GotoMist:
-                log.info("Goto Misting");
+            case GotoSmoke:
+                log.info("Goto smoking");
 
                 Condition.wait(new Callable<Boolean>() {
                     @Override
@@ -276,23 +276,23 @@ public class MistRun extends PollingScript<ClientContext> {
             return State.Banking;
         }
     } else {
-        log.info("Checking gotoMisting && Misting");
-        double distance = mistingLocation.tile().distanceTo(ctx.players.local());
+        log.info("Checking gotoSmoking && Smoking");
+        double distance = smokingLocation.tile().distanceTo(ctx.players.local());
         if(distance<0 || distance > 4) {
             if(ctx.backpack.select().count() == 28) {
-                log.info("Checking gotoMisting");
-                return State.GotoMist;
+                log.info("Checking gotoSmoking");
+                return State.GotoSmoke;
             }else{
                 log.info("Checking banking;");
                 return State.Banking;
             }
         } else {
-            log.info("Checking Misting");
-            return State.Misting;
+            log.info("Checking Smoking");
+            return State.Smoking;
         }
     }
 }
     private enum State {
-        Misting, GotoBank, GotoMist, Banking
+        Smoking, GotoBank, GotoSmoke, Banking
     }
 }
