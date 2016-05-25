@@ -178,4 +178,5 @@ public class HerbsUltimateMain extends Script<ClientContext> implements PaintLis
     public MethodChosen getMethodChosen(){
         return methodChosen;
     }
+
 }
